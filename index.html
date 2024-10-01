@@ -14,26 +14,24 @@
   <div class="w-full max-w-6xl p-4">
       <div class="bg-pink-300 bg-opacity-40 p-8 rounded-lg w-3/5 max-w-md mx-auto md:max-w-full md:flex md:justify-center shadow-lg">
           
-          <!-- Left section: Logo and Text (for large screens) -->
           <div class="md:flex-1 md:flex md:flex-col md:items-center md:justify-center mb-8 md:mb-0">
               <div class="flex justify-center mb-4">
                   <img src="images/logog.png" alt="Sinks R Us Logo" class="w-60 h-60">
               </div>
               <h1 class="text-4xl text-center font-bold mb-2 font-serif">SINKS R US</h1>
-              <p class="text-center text-gray-600 mb-6 font-serif">Your one-stop shop for all types of sinks</p>
+              <p class="text-center text-gray-600 mb-6 font-serif text-sm">Your one-stop shop for all types of sinks</p>
           </div>
 
-          <!-- Right section: Login and Signup -->
           <div class="md:flex-1 md:flex md:flex-col md:justify-center">
-              <!-- Login Form -->
-              <form class="space-y-4 ">
-                  <input type="text" placeholder="Username" required pattern="[A-Z][a-z]+" title="Must start with a capital letter and contain at least one lowercase letter" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-gray-400" required>
-                  <input type="password" placeholder="Password" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-gray-400" required>
+              <form class="space-y-4" id="loginForm" onsubmit="return validateLogin()">
+                  <input type="text" id="username" placeholder="Username" pattern="[A-Z][a-z]+" title="Must start with a capital letter and contain at least one lowercase letter" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-gray-400" required>
+                  <input type="password" id="password" placeholder="Password" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-gray-400" required>
                   <a href="#" class="text-gray-500 text-sm block text-center">Forgot password?</a>
-                  <button type="submit" class="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-600 ">Login</button>
+                  <button type="button" onclick="login()" class="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-600">Login</button>
+                  
+                  <p id="error-message" class="text-red-600 text-sm hidden text-center mt-2">Please enter both username and password.</p>
               </form>
 
-              <!-- Signup and Social Login -->
               <div class="mt-6">
                   <p class="text-center text-gray-600 mb-4 text-4xl">Sign up</p>
                   <button class="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-600">Register Now!</button>
@@ -44,10 +42,33 @@
                     <a href="#" class="text-gray-800 hover:text-gray-600"><i class="fab fa-facebook"></i></a>
                     <a href="#" class="text-gray-800 hover:text-gray-600"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="text-gray-800 hover:text-gray-600"><i class="fab fa-twitter"></i></a>
-                </div>
+                  </div>
               </div>
           </div>
       </div>
   </div>
+
+  <script>
+    function validateLogin() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var errorMessage = document.getElementById('error-message');
+        
+        if (username === "" || password === "") {
+            errorMessage.classList.remove('hidden');
+            return false;
+        } else {
+            errorMessage.classList.add('hidden');
+            return true;
+        }
+    }
+
+    function login() {
+        if (validateLogin()) {
+            window.location.href = 'employee_list.html';
+        }
+    }
+  </script>
+
 </body>
 </html>

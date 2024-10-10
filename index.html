@@ -3,72 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sinks R Us</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-200 flex items-center justify-center min-h-screen" style="background-image: url('images/bg-pic.jpg'); background-size: cover; background-position: center; backdrop-filter: brightness(.95);">
-  
-  <div class="w-full max-w-6xl p-4">
-      <div class="bg-pink-300 bg-opacity-40 p-8 rounded-lg w-3/5 max-w-md mx-auto md:max-w-full md:flex md:justify-center shadow-lg">
-          
-          <div class="md:flex-1 md:flex md:flex-col md:items-center md:justify-center mb-8 md:mb-0">
-              <div class="flex justify-center mb-4">
-                  <img src="images/logog.png" alt="Sinks R Us Logo" class="w-60 h-60">
-              </div>
-              <h1 class="text-4xl text-center font-bold mb-2 font-serif">SINKS R US</h1>
-              <p class="text-center text-gray-600 mb-6 font-serif text-sm">Your one-stop shop for all types of sinks</p>
-          </div>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+        <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+            <div class="mb-4">
+                <input type="text" id="username" name="username" placeholder="Username" required
+                       class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div class="mb-6">
+                <input type="password" id="password" name="password" placeholder="Password" required
+                       class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <button type="submit"
+                    class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors">
+                Login
+            </button>
+        </form>
+    </div>
 
-          <div class="md:flex-1 md:flex md:flex-col md:justify-center">
-              <form class="space-y-4" id="loginForm" onsubmit="return validateLogin()">
-                  <input type="text" id="username" placeholder="Username" pattern="[A-Z][a-z]+" title="Must start with a capital letter and contain at least one lowercase letter" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-gray-400" required>
-                  <input type="password" id="password" placeholder="Password" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-gray-400" required>
-                  <a href="#" class="text-gray-500 text-sm block text-center">Forgot password?</a>
-                  <button type="button" onclick="login()" class="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-600">Login</button>
-                  
-                  <p id="error-message" class="text-red-600 text-sm hidden text-center mt-2">Please enter both username and password.</p>
-              </form>
-
-              <div class="mt-6">
-                  <p class="text-center text-gray-600 mb-4 text-4xl">Sign up</p>
-                  <button class="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-600">Register Now!</button>
-
-                  <p class="text-center text-gray-600 my-4">Or login using</p>
-                  
-                  <div class="flex justify-center space-x-4 text-xl">
-                    <a href="#" class="text-gray-800 hover:text-gray-600"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-gray-800 hover:text-gray-600"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-800 hover:text-gray-600"><i class="fab fa-twitter"></i></a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-
-  <script>
-    function validateLogin() {
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        var errorMessage = document.getElementById('error-message');
-        
-        if (username === "" || password === "") {
-            errorMessage.classList.remove('hidden');
-            return false;
-        } else {
-            errorMessage.classList.add('hidden');
-            return true;
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+            // Perform any additional checks or operations here if needed
+            window.location.href = 'employee_list.html'; // Redirect to employee_list.html
         }
-    }
-
-    function login() {
-        if (validateLogin()) {
-            window.location.href = 'employee_list.html';
-        }
-    }
-  </script>
-
+    </script>
 </body>
 </html>
